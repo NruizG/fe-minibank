@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mini-bank": {
+    "fe-mini-bank": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mini-bank",
+            "outputPath": "dist/fe-mini-bank",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,15 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "src/theme.less",
               "src/styles.scss"
             ],
             "scripts": []
@@ -68,18 +74,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mini-bank:build"
+            "browserTarget": "fe-mini-bank:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mini-bank:build:production"
+              "browserTarget": "fe-mini-bank:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mini-bank:build"
+            "browserTarget": "fe-mini-bank:build"
           }
         },
         "test": {
@@ -116,16 +122,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mini-bank:serve"
+            "devServerTarget": "fe-mini-bank:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mini-bank:serve:production"
+              "devServerTarget": "fe-mini-bank:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "mini-bank"
+  "defaultProject": "fe-mini-bank"
 }

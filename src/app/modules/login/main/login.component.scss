@@ -1,0 +1,47 @@
+.home {
+  display: flex;
+  min-height: 100vh;
+
+  &__portrait {
+    background: url(../../../../assets/minaconcelu.png) center/cover no-repeat;
+    width: 40%;
+    max-width: 570px;
+    height: 100vh;
+    min-height: 568px;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 60%;
+    min-width: calc(60% + (40% - 570px));
+    height: 100vh;
+    min-height: 568px;
+    box-shadow: none;
+    background-color: #F8F8F8;
+
+    &__logo {
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 4%;
+      left: 7%;
+      display: block;
+      width: 180px;
+      height: 50px;
+      background-size: 100%;
+      background-image: url(../../../../assets/logo.png);
+    }
+
+    &__login {
+      width: 90%;
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 20px 60px;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 2px 12px 0 rgb(196 196 196 / 50%);
+    }
+  }
+}

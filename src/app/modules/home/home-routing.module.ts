@@ -31,6 +31,14 @@ const routes: Routes = [
     data: {
       breadcrumb: 'Transferencias'
     }
+  },
+  {
+    path: 'transaction',
+    loadChildren: () => import('../transaction/transaction.module').then(m => m.TransactionModule),
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'Depositar/Retirar'
+    }
   }
 ];
 

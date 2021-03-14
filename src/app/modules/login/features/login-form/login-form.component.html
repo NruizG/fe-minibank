@@ -1,26 +1,31 @@
-<div class="login">
-  <h3 class="login__title">Ingresa a tu cuenta</h3>
-  <form nz-form [formGroup]="loginForm" (ngSubmit)="login()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Debe ingresar un RUT">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="dni"
-            placeholder="Ingresa tu RUT" (blur)="formatRut()" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Debe ingresar su contraseña">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password"
-            placeholder="Contraseña" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <div class="login__submit">
-      <button nz-button nzType="primary" class="login__submit__button">
-        Ingresar
-      </button>
-    </div>
-  </form>
-</div>
+<nz-spin nzTip="Iniciando sesión..." [nzSpinning]="isLoading">
+  <div class="login">
+    <h3 class="login__title">Ingresa a tu cuenta</h3>
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="login()">
+      <!-- Customer's DNI -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Debe ingresar un RUT">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input formControlName="dni"
+              placeholder="Ingresa tu RUT" (blur)="formatRut()" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Customer's password -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Debe ingresar su contraseña">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password"
+              placeholder="Contraseña" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Login button -->
+      <div class="login__submit">
+        <button nz-button nzType="primary" class="login__submit__button">
+          Ingresar
+        </button>
+      </div>
+    </form>
+  </div>
+</nz-spin>

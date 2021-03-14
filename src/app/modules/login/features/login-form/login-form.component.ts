@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { LoginRQ } from 'src/app/dtos/login-rq.dto';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 
 @Component({
@@ -8,11 +10,13 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  public isLoading: boolean;
   public loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private customerService: CustomersService
+    private customerService: CustomersService,
+    private notification: NzNotificationService
   ) { }
 
   public ngOnInit(): void {
@@ -31,7 +35,23 @@ export class LoginFormComponent implements OnInit {
       this.loginForm.controls[i].markAsDirty();
       this.loginForm.controls[i].updateValueAndValidity();
     }
+
     this.formatRut();
+    if (this.loginForm.valid) {
+      this.isLoading = true;
+      const loginData = this.loginForm.getRawValue();
+      this.customerService.login(new LoginRQ(loginData)).subscribe(response => {
+        this.isLoading = false;
+        this.notification.success('Sesión iniciada', 'Bienvenido a Mini Bank');
+      }, error => {
+        let message = 'Intentelo más tarde';
+        if (error.status === 403) {
+          message = 'El RUT o contraseña no son válidos';
+        }
+        this.isLoading = false;
+        this.notification.error('Ha ocurrido un error', message);
+      });
+    }
   }
 
   public formatRut(): void {

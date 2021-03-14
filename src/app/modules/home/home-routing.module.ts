@@ -16,6 +16,22 @@ const routes: Routes = [
       breadcrumb: 'Vista general'
     }
   },
+  {
+    path: 'history',
+    loadChildren: () => import('../history/history.module').then(m => m.HistoryModule),
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'Historial'
+    }
+  },
+  {
+    path: 'transfer',
+    loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule),
+    canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'Transferencias'
+    }
+  }
 ];
 
 @NgModule({

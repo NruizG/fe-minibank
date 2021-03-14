@@ -68,4 +68,9 @@ export class IndexComponent implements OnInit {
   public getRoute(): string {
     return this.router.url;
   }
+
+  public logOut(): void {
+    localStorage.clear();
+    window.location.reload();
+  }
 }

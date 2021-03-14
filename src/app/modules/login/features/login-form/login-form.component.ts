@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { LoginRQ } from 'src/app/dtos/login-rq.dto';
 import { CustomersService } from 'src/app/services/customers/customers.service';
@@ -16,7 +17,8 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private customerService: CustomersService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
@@ -42,6 +44,7 @@ export class LoginFormComponent implements OnInit {
       const loginData = this.loginForm.getRawValue();
       this.customerService.login(new LoginRQ(loginData)).subscribe(response => {
         this.isLoading = false;
+        this.router.navigate(['dashboard'])
         this.notification.success('Sesión iniciada', 'Bienvenido a Mini Bank');
       }, error => {
         let message = 'Intentelo más tarde';

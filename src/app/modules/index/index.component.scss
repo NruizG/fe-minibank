@@ -58,6 +58,9 @@ nz-header {
 }
 
 .app-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   position: relative;
   height: 64px;
   padding: 0;
@@ -67,6 +70,15 @@ nz-header {
   nz-breadcrumb {
     display: unset;
     font-size: 0.97rem;
+  }
+
+  &__logout {
+    cursor: pointer;
+    margin: 5px 24px;
+
+    i {
+      font-size: 1.6rem;
+    }
   }
 }
 

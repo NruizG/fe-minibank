@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomersService } from 'src/app/services/customers/customers.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,7 +11,8 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private customerService: CustomersService
   ) { }
 
   public ngOnInit(): void {

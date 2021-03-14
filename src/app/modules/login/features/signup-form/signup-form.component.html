@@ -1,58 +1,66 @@
-<div class="register">
-  <h3 class="register__title">Registrate y obtén tu cuenta</h3>
-  <form nz-form [formGroup]="registerForm" (ngSubmit)="register()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Debes ingresar tu nombre">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="name"
-            placeholder="Ingresa tu nombre" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Debe ingresar tu RUT">
-        <nz-input-group nzPrefixIcon="idcard">
-          <input type="text" nz-input formControlName="dni"
-            placeholder="RUT del usuario" (blur)="formatRut()" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Debe ingresar un email">
-        <nz-input-group nzPrefixIcon="mail">
-          <input type="email" nz-input formControlName="email"
-            placeholder="Correo" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Debes ingresar una contraseña" nzHasFeedback>
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password"
-            placeholder="Contraseña" (ngModelChange)="updateConfirmValidator()" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="errorTpl" nzHasFeedback>
-        <nz-input-group nzPrefixIcon="lock">
-          <input nz-input type="password" formControlName="checkPassword"
-            placeholder="Confirmar contraseña" />
-        </nz-input-group>
-        <ng-template #errorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">
-            Debe confirmar su contraseña
-          </ng-container>
-          <ng-container *ngIf="control.hasError('confirm')">
-            Las contraseñas no coinciden
-          </ng-container>
-        </ng-template>
-      </nz-form-control>
-    </nz-form-item>
-    <div class="register__submit">
-      <button nz-button nzType="primary" class="register__submit__button">
-        Registrarse
-      </button>
-    </div>
-  </form>
-</div>
+<nz-spin nzTip="Creando cuenta..." [nzSpinning]="isLoading">
+  <div class="register">
+    <h3 class="register__title">Registrate y obtén tu cuenta</h3>
+    <form nz-form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- Customer's name -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Debes ingresar tu nombre">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input formControlName="name"
+              placeholder="Ingresa tu nombre" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Customer's DNI -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Debe ingresar tu RUT">
+          <nz-input-group nzPrefixIcon="idcard">
+            <input type="text" nz-input formControlName="dni"
+              placeholder="RUT del usuario" (blur)="formatRut()" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Customer's email -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Debe ingresar un email">
+          <nz-input-group nzPrefixIcon="mail">
+            <input type="email" nz-input formControlName="email"
+              placeholder="Correo" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Customer's password -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Debes ingresar una contraseña" nzHasFeedback>
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password"
+              placeholder="Contraseña" (ngModelChange)="updateConfirmValidator()" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Customer's password confirm -->
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="errorTpl" nzHasFeedback>
+          <nz-input-group nzPrefixIcon="lock">
+            <input nz-input type="password" formControlName="checkPassword"
+              placeholder="Confirmar contraseña" />
+          </nz-input-group>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Debe confirmar su contraseña
+            </ng-container>
+            <ng-container *ngIf="control.hasError('confirm')">
+              Las contraseñas no coinciden
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- Register button -->
+      <div class="register__submit">
+        <button nz-button nzType="primary" class="register__submit__button">
+          Registrarse
+        </button>
+      </div>
+    </form>
+  </div>
+</nz-spin>

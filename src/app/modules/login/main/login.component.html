@@ -3,7 +3,7 @@
   <div class="home__main">
     <div class="home__main__logo"></div>
     <div class="home__main__login">
-      <nz-tabset>
+      <nz-tabset [nzSelectedIndex]="tabIndex">
         <nz-tab nzTitle="Ingresar">
           <ng-template nz-tab>
             <app-login-form></app-login-form>
@@ -11,7 +11,7 @@
         </nz-tab>
         <nz-tab nzTitle="Obtener cuenta">
           <ng-template nz-tab>
-            <app-signup-form></app-signup-form>
+            <app-signup-form (onRegistered)="tabIndex = 0"></app-signup-form>
           </ng-template>
         </nz-tab>
       </nz-tabset>

@@ -13,7 +13,7 @@
       <nz-form-control nzErrorTip="Debe ingresar tu RUT">
         <nz-input-group nzPrefixIcon="idcard">
           <input type="text" nz-input formControlName="dni"
-            placeholder="RUT del usuario" />
+            placeholder="RUT del usuario" (blur)="formatRut()" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>

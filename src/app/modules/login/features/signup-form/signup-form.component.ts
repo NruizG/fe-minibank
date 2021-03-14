@@ -28,7 +28,11 @@ export class SignUpComponent implements OnInit {
   }
 
   public register(): void {
-    
+    for (const i in this.registerForm.controls) {
+      this.registerForm.controls[i].markAsDirty();
+      this.registerForm.controls[i].updateValueAndValidity();
+    }
+    this.formatRut();
   }
 
   public updateConfirmValidator(): void {
@@ -43,4 +47,14 @@ export class SignUpComponent implements OnInit {
     }
     return {};
   };
+
+  public formatRut(): void {
+    let dni = this.registerForm.get('dni').value.toString();
+    dni = dni.replace('.', '').replace('-', '');
+    const module = dni.substr(dni.length - 1);
+    dni = dni.slice(0, -1);
+    dni = dni.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    dni = dni + `-${module}`;
+    this.registerForm.get('dni').setValue(dni);
+  }
 }

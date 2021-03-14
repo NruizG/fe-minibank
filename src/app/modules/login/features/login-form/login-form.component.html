@@ -5,7 +5,7 @@
       <nz-form-control nzErrorTip="Debe ingresar un RUT">
         <nz-input-group nzPrefixIcon="user">
           <input type="text" nz-input formControlName="dni"
-            placeholder="Ingresa tu RUT" />
+            placeholder="Ingresa tu RUT" (blur)="formatRut()" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>

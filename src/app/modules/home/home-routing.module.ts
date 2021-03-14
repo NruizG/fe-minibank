@@ -5,12 +5,12 @@ import { AuthGuard } from 'src/app/services/auth/user.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'overview',
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule),
+    path: 'overview',
+    loadChildren: () => import('../overview/overview.module').then(m => m.OverviewModule),
     canActivate: [AuthGuard],
     data: {
       breadcrumb: 'Vista general'
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class IndexRoutingModule { }
+export class HomeRoutingModule { }

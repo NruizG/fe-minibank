@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Role, RoledSubmodule, RoleModuleService } from 'gungnir-role-utils';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class HomeComponent implements OnInit {
   public isCollapsed = false;
   public items = [];
   public mockRole = new Role({

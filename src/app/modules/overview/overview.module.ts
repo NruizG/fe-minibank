@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
-import { DashboardComponent } from './main/dashboard.component';
+import { OverviewComponent } from './main/overview.component';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { DashboardRoutingModule } from './dashboard-routing.module';
 import { Permission, RoledMenu, RoledModule, RoledSubmodule } from 'gungnir-role-utils';
 import { MenuComponent } from './menu/menu.component';
+import { OverviewRoutingModule } from './overview-routing.module';
 
 
 @NgModule({
   imports: [
-    DashboardRoutingModule,
+    OverviewRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
@@ -23,10 +23,10 @@ import { MenuComponent } from './menu/menu.component';
     NzToolTipModule,
     NzBreadCrumbModule
   ],
-  declarations: [DashboardComponent],
-  exports: [DashboardComponent]
+  declarations: [OverviewComponent],
+  exports: [OverviewComponent]
 })
-export class DashboardModule extends RoledModule{
+export class OverviewModule extends RoledModule{
   public static getMenuView(): RoledMenu {
     return MenuComponent;
   }
@@ -36,11 +36,11 @@ export class DashboardModule extends RoledModule{
   }
 
   public static getQualifiedName(): string {
-    return 'Dashboard';
+    return 'Overview';
   }
 
   public static getModuleName(): string {
-    return 'DashboardModule';
+    return 'OverviewModule';
   }
 
   public static getSubmodules(): RoledSubmodule[] {

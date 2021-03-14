@@ -7,15 +7,15 @@ import { RoledMenu } from 'gungnir-role-utils';
 })
 export class MenuComponent extends RoledMenu {
   public static getMenuIcon(): string {
-    return 'node-expand';
+    return 'dashboard';
   }
 
   public static getMenuName(): string {
-    return 'Dashboard';
+    return 'General';
   }
 
   public static getLink(): string {
-    return '/dashboard';
+    return '/overview';
   }
 
   public static getSelected(): boolean {

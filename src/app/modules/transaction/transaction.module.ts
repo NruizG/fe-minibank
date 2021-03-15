@@ -10,6 +10,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { Permission, RoledMenu, RoledModule, RoledSubmodule } from 'gungnir-role-utils';
 import { MenuComponent } from './menu/menu.component';
 import { TransactionRoutingModule } from './transaction-routing.module';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TransactionRoutingModule } from './transaction-routing.module';
     FormsModule,
     CommonModule,
     NzToolTipModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
+    NzStepsModule
   ],
   declarations: [TransactionComponent],
   exports: [TransactionComponent]

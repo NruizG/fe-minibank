@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from 'src/app/models/transaction.model';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
-import { HistoryService } from 'src/app/services/history/history.service';
+import { AccountService } from 'src/app/services/account/account.service';
 import { Account } from 'src/app/models/account.model';
 import * as dayjs from 'dayjs';
 import { TransactionType } from 'src/app/enums/transaction-type.enum';
@@ -20,7 +20,7 @@ export class OverviewComponent implements OnInit {
   public isInfoLoading: boolean;
 
   constructor(
-    private historyService: HistoryService,
+    private accountService: AccountService,
     private dialog: DialogService
   ) { }
 
@@ -32,7 +32,7 @@ export class OverviewComponent implements OnInit {
 
   public getAccountInfo(): void {
     this.isInfoLoading = true;
-    this.historyService.getAccountInfo().subscribe(response => {
+    this.accountService.getAccountInfo().subscribe(response => {
       this.account =  new Account(response);
       this.isInfoLoading = true;
     }, error => {
@@ -43,7 +43,7 @@ export class OverviewComponent implements OnInit {
 
   public getTransactions(): void {
     this.isLoading = true;
-    this.historyService.getHistory().subscribe(response => {
+    this.accountService.getHistory().subscribe(response => {
       this.transactions = response.map(transaction => new Transaction(transaction));
       this.isLoading = false;
     }, error => {

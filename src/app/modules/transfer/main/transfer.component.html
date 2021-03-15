@@ -1,1 +1,23 @@
-Que wea dashboard
+<div class="transfer">
+  <div class="transfer__stepper">
+    <nz-steps [nzCurrent]="currentStep" nzProgressDot>
+      <nz-step nzTitle="Datos"
+        nzDescription="Ingrese datos de transferencia"></nz-step>
+      <nz-step nzTitle="Confirmación"
+        nzDescription="Verifique que los datos sean correctos"></nz-step>
+      <nz-step nzTitle="Resultado"
+        nzDescription="Estado de la transferencia"></nz-step>
+    </nz-steps>
+  </div>
+  <div class="transfer__step">
+    <div *ngIf="currentStep === 0" class="transfer__step__data">
+      <app-tranfer-form (onNext)="getTransactionData($event)"></app-tranfer-form>
+    </div>
+    <div *ngIf="currentStep === 0" class="transfer__step__confirmation">
+      <app-transfer-summary></app-transfer-summary>
+    </div>
+    <div *ngIf="currentStep === 0" class="transfer__step__result">
+
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
@@ -10,21 +10,42 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { Permission, RoledMenu, RoledModule, RoledSubmodule } from 'gungnir-role-utils';
 import { MenuComponent } from './menu/menu.component';
 import { TransferRoutingModule } from './transfer-routing.module';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { TransferFormComponent } from './features/tranfer-form/tranfer-form.component';
+import { TransferSummaryComponent } from './features/transfer-summary/transfer-summary.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import es from '@angular/common/locales/es';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { DialogService } from 'src/app/services/dialog/dialog.service';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
+registerLocaleData(es);
 
 @NgModule({
   imports: [
     TransferRoutingModule,
     IconsProviderModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     NzLayoutModule,
     NzMenuModule,
     FormsModule,
     CommonModule,
     NzToolTipModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
+    NzStepsModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule
   ],
-  declarations: [TransferComponent],
-  exports: [TransferComponent]
+  declarations: [
+    TransferComponent,
+    TransferFormComponent,
+    TransferSummaryComponent],
+  exports: [TransferComponent],
+  providers: [CurrencyPipe, DialogService, NzMessageService]
 })
 export class TransferModule extends RoledModule{
   public static getMenuView(): RoledMenu {

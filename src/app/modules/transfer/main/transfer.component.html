@@ -11,7 +11,9 @@
   </div>
   <div class="transfer__step">
     <div *ngIf="currentStep === 0" class="transfer__step__data">
-      <app-tranfer-form (onNext)="getTransactionData($event)"></app-tranfer-form>
+      <app-tranfer-form (onNext)="getTransactionData($event)"
+        [account]="account"
+      ></app-tranfer-form>
     </div>
     <div *ngIf="currentStep === 0" class="transfer__step__confirmation">
       <app-transfer-summary></app-transfer-summary>

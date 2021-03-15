@@ -5,7 +5,6 @@ import * as dayjs from 'dayjs';
 import { TransactionType } from 'src/app/enums/transaction-type.enum';
 import { Account } from 'src/app/models/account.model';
 import { Transaction } from 'src/app/models/transaction.model';
-import { AccountService } from 'src/app/services/account/account.service';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 
 @Component({
@@ -15,20 +14,18 @@ import { DialogService } from 'src/app/services/dialog/dialog.service';
 })
 export class TransferFormComponent implements OnInit {
   @Input() public transferForm: FormGroup;
+  @Input() public account: Account;
   @Output() public onNext: EventEmitter<Transaction> = new EventEmitter();
   public currentDate: string;
-  public account: Account;
   
   constructor(
     private formBuilder: FormBuilder,
     private currencyPipe: CurrencyPipe,
     private dialog: DialogService,
-    private accountService: AccountService
   ) { }
 
   public ngOnInit(): void {
     this.buildForm();
-    this.getAccountInfo();
     this.getCurrentDate();
   }
 
@@ -38,10 +35,10 @@ export class TransferFormComponent implements OnInit {
       amount: [null, Validators.required]
     });
 
-    this.subcribeToAmount();
+    this.subscribeToAmount();
   }
 
-  public subcribeToAmount(): void {
+  public subscribeToAmount(): void {
     this.transferForm.get('amount').valueChanges.subscribe(value => {
       if (value) {
         this.transferForm.patchValue({
@@ -68,14 +65,6 @@ export class TransferFormComponent implements OnInit {
     this.currentDate = dayjs().format('DD/MM/YYYY HH:mm');
   }
   
-  public getAccountInfo(): void {
-    this.accountService.getAccountInfo().subscribe(response => {
-      this.account =  new Account(response);
-    }, error => {
-      this.dialog.danger('Error al obtener la información de tu cuenta');
-    });
-  }
-
   public submit(): void {
     for (const i in this.transferForm.controls) {
       this.transferForm.controls[i].markAsDirty();
@@ -83,9 +72,8 @@ export class TransferFormComponent implements OnInit {
     }
     const formData = this.transferForm.getRawValue();
     formData.amount = formData.amount.replace('.', '');
-    this.verifyBalance(formData.amount)
     
-    if (this.transferForm.valid) {
+    if (this.transferForm.valid && this.verifyBalance(formData.amount)) {
       formData.type = TransactionType.TRANSFEROUT;
       this.onNext.emit(new Transaction(formData));
     }

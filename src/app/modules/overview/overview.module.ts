@@ -14,9 +14,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { DateFormatPipe } from 'src/app/pipes/date-format.pipe';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+
 
 @NgModule({
   imports: [

@@ -10,7 +10,8 @@
   </div>
   <div class="overview__table">
     <nz-spin nzTip="Cargando historial..." [nzSpinning]="isLoading">
-      <nz-table #basicTable [nzData]="transactions" nzBordered nzSize="middle">
+      <nz-table #basicTable [nzData]="transactions" nzBordered nzSize="middle"
+        [nzFrontPagination]="false">
         <thead>
           <tr>
             <th>Fecha</th>

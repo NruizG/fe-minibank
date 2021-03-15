@@ -26,6 +26,9 @@
   }
 
   &__table {
+    height: calc(100vh - 318px);
+    overflow: auto;
+
     td:nth-child(3) {
       font-family: 'Nunito Bold';
     }

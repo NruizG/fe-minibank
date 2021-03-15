@@ -33,7 +33,7 @@
           <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
           </span>
-          <nz-breadcrumb [nzAutoGenerate]="true"></nz-breadcrumb>
+          <nz-breadcrumb [nzAutoGenerate]="true" class="breadcrumb"></nz-breadcrumb>
         </div>
         <div nz-tooltip nzTooltipTitle="Cerrar sesión"
           class="app-header__logout" (click)="logOut()">

@@ -11,7 +11,7 @@ export class MenuComponent extends RoledMenu {
   }
 
   public static getMenuName(): string {
-    return 'Historial';
+    return 'Saldos y movimientos';
   }
 
   public static getLink(): string {

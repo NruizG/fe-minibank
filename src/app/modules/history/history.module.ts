@@ -10,21 +10,32 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { Permission, RoledMenu, RoledModule, RoledSubmodule } from 'gungnir-role-utils';
 import { MenuComponent } from './menu/menu.component';
 import { HistoryRoutingModule } from './history-routing.module';
-
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { DialogService } from 'src/app/services/dialog/dialog.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { DateFormatPipe } from 'src/app/pipes/date-format.pipe';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
     HistoryRoutingModule,
     IconsProviderModule,
+    PipesModule,
     NzLayoutModule,
     NzMenuModule,
     FormsModule,
     CommonModule,
     NzToolTipModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
+    NzTableModule,
+    NzSpinModule,
+    NzTagModule
   ],
   declarations: [HistoryComponent],
-  exports: [HistoryComponent]
+  exports: [HistoryComponent],
+  providers: [DialogService, NzMessageService]
 })
 export class HistoryModule extends RoledModule{
   public static getMenuView(): RoledMenu {

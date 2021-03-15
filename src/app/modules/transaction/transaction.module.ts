@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
@@ -11,22 +11,39 @@ import { Permission, RoledMenu, RoledModule, RoledSubmodule } from 'gungnir-role
 import { MenuComponent } from './menu/menu.component';
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
-
+import { DialogService } from 'src/app/services/dialog/dialog.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @NgModule({
   imports: [
     TransactionRoutingModule,
     IconsProviderModule,
+    ReactiveFormsModule,
     NzLayoutModule,
-    NzMenuModule,
     FormsModule,
+    NzMenuModule,
     CommonModule,
     NzToolTipModule,
     NzBreadCrumbModule,
-    NzStepsModule
+    NzStepsModule,
+    NzButtonModule,
+    NzRadioModule,
+    NzFormModule,
+    NzInputModule
   ],
   declarations: [TransactionComponent],
-  exports: [TransactionComponent]
+  exports: [TransactionComponent],
+  providers: [
+    DialogService,
+    NzMessageService,
+    CurrencyPipe,
+    NzNotificationService
+  ]
 })
 export class TransactionModule extends RoledModule{
   public static getMenuView(): RoledMenu {

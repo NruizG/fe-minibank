@@ -1,5 +1,31 @@
-<nz-steps [nzCurrent]="1" nzDirection="vertical">
-  <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
-  <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
-  <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
-</nz-steps>
+<div class="transaction">
+  <div class="transaction__balance">
+    <span>Saldo disponible al {{ currentDate || 0}} Hrs</span>
+    <span>{{ (account?.balance || 0 | currency:'CLP':'$ ':'1.0-0').replace(',', '.')}}</span>
+  </div>
+  <div class="transaction__form">
+    <div class="transaction__form__type">
+      <nz-radio-group [(ngModel)]="selectedTransaction" nzButtonStyle="solid">
+        <label nz-radio-button [nzValue]="transactionType.DEPOSIT">Depositar</label>
+        <label nz-radio-button [nzValue]="transactionType.WITHDRAW">Retirar</label>
+      </nz-radio-group>
+    </div>
+    <form nz-form [formGroup]="transactionForm" nzLayout="vertical">
+      <!-- Amount -->
+      <nz-form-item>
+        <nz-form-label nzRequired>Monto</nz-form-label>
+        <nz-form-control nzErrorTip="Debe ingresar un monto">
+          <nz-input-group nzPrefixIcon="dollar" nzSize="large">
+            <input nz-input formControlName="amount" nzSize="large"
+              placeholder="Monto de transacción">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item >
+    </form>
+  </div>
+  <div class="buttons">
+    <button nz-button nzType="primary" (click)="submitTransaction()">
+      Realizar transacción
+    </button>
+  </div>
+</div>

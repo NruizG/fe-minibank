@@ -36,7 +36,6 @@ registerLocaleData(es);
     ReactiveFormsModule,
     NzLayoutModule,
     NzMenuModule,
-    FormsModule,
     CommonModule,
     NzToolTipModule,
     NzBreadCrumbModule,

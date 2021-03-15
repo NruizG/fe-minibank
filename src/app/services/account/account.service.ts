@@ -27,4 +27,12 @@ export class AccountService {
     delete tmpTransaction.customerDni;
     return this.rest.post(`accounts/${transaction.customerDni}/transfer`, tmpTransaction);
   }
+
+  public makeDeposit(amount: Partial<TransactionDto>): Observable<Transaction> {
+    return this.rest.post('accounts/deposit', amount);
+  }
+
+  public makeWithdraw(amount: Partial<TransactionDto>): Observable<Transaction> {
+    return this.rest.post('accounts/withdraw', amount);
+  }
 }

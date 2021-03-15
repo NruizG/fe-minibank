@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   public verifyIfLogged(): void {
     if (this.customerService.isLogged()) {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['overview']);
     }
   }
 }

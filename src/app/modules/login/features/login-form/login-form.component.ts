@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
       const loginData = this.loginForm.getRawValue();
       this.customerService.login(new LoginRQ(loginData)).subscribe(response => {
         this.isLoading = false;
-        this.router.navigate(['dashboard'])
+        this.router.navigate(['overview'])
         this.notification.success('Sesión iniciada', 'Bienvenido a Mini Bank');
       }, error => {
         let message = 'Intentelo más tarde';

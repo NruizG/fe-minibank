@@ -60,14 +60,15 @@ export class CustomersService {
       this.rest.setToken(token);
       if (!this.customer) {
         await this.validateToken().toPromise()
-          .then(response => {
-            this.customer = new Customer(response.customer);
-          })
-          .catch(err => {
-            localStorage.clear();
-            this.router.navigate(['login']);
-          });
+        .then(response => {
+          this.customer = new Customer(response.customer);
+        })
+        .catch(err => {
+          localStorage.clear();
+          this.router.navigate(['login']);
+        });
       }
+      this.rest.setCustomerDni(this.customer.dni);
       const currentDate = Date.now();
       if (((currentDate-(currentDate%1000))/1000) <= decodedToken?.exp) {
         return true;

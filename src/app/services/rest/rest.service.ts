@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RestService {
   private token: string;
+  private customerDni: string;
 
   constructor(private http: HttpClient) { }
 
@@ -49,12 +50,17 @@ export class RestService {
     headers = headers.set('Access-Control-Allow-Headers', '*');
     if (this.token && auth === RequestAuthenticated.AUTHENTICATED) {
       headers = headers.set('Authorization', `Bearer ${this.token}`);
+      headers = headers.set('customerDni', `${this.customerDni}`);
     }
     return headers;
   }
 
   public setToken(token: string): void {
     this.token = token;
+  }
+
+  public setCustomerDni(dni: string): void {
+    this.customerDni = dni;
   }
 
   private generateDefault(options: any = {}): any {

@@ -13,15 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('../overview/overview.module').then(m => m.OverviewModule),
     canActivate: [AuthGuard],
     data: {
-      breadcrumb: 'Vista general'
-    }
-  },
-  {
-    path: 'history',
-    loadChildren: () => import('../history/history.module').then(m => m.HistoryModule),
-    canActivate: [AuthGuard],
-    data: {
-      breadcrumb: 'Historial'
+      breadcrumb: 'Saldo y movimientos'
     }
   },
   {

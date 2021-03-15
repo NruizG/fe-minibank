@@ -1,1 +1,49 @@
-Que wea dashboard
+<div class="overview">
+  <div class="overview__account">
+    <div class="overview__account__number">
+      Cuenta bancaria N° {{ account?.number || 0}} (CLP)
+    </div>
+    <div class="overview__account__balance">
+      <span>Saldo disponible al {{ currentDate || 0}} Hrs</span>
+      <span>{{ (account?.balance || 0 | currency:'CLP':'$ ':'1.0-0').replace(',', '.')}}</span>
+    </div>
+  </div>
+  <div class="overview__table">
+    <nz-spin nzTip="Cargando historial..." [nzSpinning]="isLoading">
+      <nz-table #basicTable [nzData]="transactions" nzBordered nzSize="middle">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Monto</th>
+            <th>N° de Transacción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{data.createdAt | dateFormat}}</td>
+            <td>
+              <ng-container [ngSwitch]="data.type">
+                <ng-container *ngSwitchCase="transactionType.DEPOSIT || transactionType.TRANSFERIN">
+                  <nz-tag [nzColor]="'green'">{{ data.type | transactionPipe }}</nz-tag>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <nz-tag [nzColor]="'red'">{{ data.type | transactionPipe }}</nz-tag>
+                </ng-container>
+              </ng-container>
+            </td>
+            <td
+              [ngStyle]="{'color': 
+              (data.type === transactionType.TRANSFEROUT || data.type === transactionType.WITHDRAW)
+                ? '#666'
+                : '#52C41A' }"
+            >
+              {{ (data?.amount || 0 | currency:'CLP':'$ ':'1.0-0').replace(',', '.') }}
+            </td>
+            <td>{{data.id}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-spin>
+  </div>
+</div>

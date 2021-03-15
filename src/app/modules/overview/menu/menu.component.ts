@@ -7,11 +7,11 @@ import { RoledMenu } from 'gungnir-role-utils';
 })
 export class MenuComponent extends RoledMenu {
   public static getMenuIcon(): string {
-    return 'dashboard';
+    return 'history';
   }
 
   public static getMenuName(): string {
-    return 'General';
+    return 'Saldo y movimientos';
   }
 
   public static getLink(): string {

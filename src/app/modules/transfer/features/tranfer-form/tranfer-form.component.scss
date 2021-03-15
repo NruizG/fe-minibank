@@ -1,0 +1,33 @@
+.form {
+  width: 90%;
+  max-width: 450px;
+  margin: 2vw auto 0 auto;
+
+  &__balance {
+    background-color: #F5F7FF;
+    border: 1px solid rgba(41,94,255,.16);
+    border-radius: 1rem;
+    margin: 20px;
+    padding: 1rem;
+    color: #2a343d;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat Regular';
+    font-size: 1.1rem;
+
+    span:nth-child(2) { 
+      font-family: 'Nunito Bold';
+      color: #295eff;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

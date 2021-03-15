@@ -1,0 +1,33 @@
+<div class="form">
+  <div class="form__balance">
+    <span>Saldo disponible al {{ currentDate || 0}} Hrs</span>
+    <span>{{ (account?.balance || 0 | currency:'CLP':'$ ':'1.0-0').replace(',', '.')}}</span>
+  </div>
+  <form nz-form [formGroup]="transferForm" nzLayout="vertical">
+    <!-- Customer DNI -->
+    <nz-form-item>
+      <nz-form-label nzRequired>RUT de destino</nz-form-label>
+      <nz-form-control nzErrorTip="Debe ingresar el RUT del destinatario">
+        <nz-input-group nzPrefixIcon="idcard" nzSize="large">
+          <input nz-input formControlName="customerDni" nzSize="large"
+            (blur)="formatRut()" placeholder="RUT de usuario">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <!-- Amount -->
+    <nz-form-item>
+      <nz-form-label nzRequired>Monto</nz-form-label>
+      <nz-form-control nzErrorTip="Debe ingresar un monto">
+        <nz-input-group nzPrefixIcon="dollar" nzSize="large">
+          <input nz-input formControlName="amount" nzSize="large"
+            placeholder="Monto a transferir">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item >
+  </form>
+  <div class="buttons">
+    <button nz-button nzType="primary" (click)="submit()">
+      Continuar<i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+    </button>
+  </div>
+</div>

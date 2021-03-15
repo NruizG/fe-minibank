@@ -1,10 +1,9 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as dayjs from 'dayjs';
+import { TransactionDto } from 'src/app/dtos/transaction.dto';
 import { TransactionType } from 'src/app/enums/transaction-type.enum';
 import { Account } from 'src/app/models/account.model';
-import { Transaction } from 'src/app/models/transaction.model';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 
 @Component({
@@ -15,8 +14,9 @@ import { DialogService } from 'src/app/services/dialog/dialog.service';
 export class TransferFormComponent implements OnInit {
   @Input() public transferForm: FormGroup;
   @Input() public account: Account;
-  @Output() public onNext: EventEmitter<Transaction> = new EventEmitter();
-  public currentDate: string;
+  @Input() public currentDate: string;
+  @Input() public transaction?: TransactionDto;
+  @Output() public onNext: EventEmitter<TransactionDto> = new EventEmitter();
   
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +26,11 @@ export class TransferFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.buildForm();
-    this.getCurrentDate();
+    if (this.transaction) {
+      this.transferForm.patchValue({
+        ...this.transaction
+      })
+    }
   }
 
   public buildForm(): void {
@@ -60,10 +64,6 @@ export class TransferFormComponent implements OnInit {
       this.transferForm.get('customerDni').setValue(dni);
     }
   }
-
-  public getCurrentDate(): void {
-    this.currentDate = dayjs().format('DD/MM/YYYY HH:mm');
-  }
   
   public submit(): void {
     for (const i in this.transferForm.controls) {
@@ -71,16 +71,16 @@ export class TransferFormComponent implements OnInit {
       this.transferForm.controls[i].updateValueAndValidity();
     }
     const formData = this.transferForm.getRawValue();
-    formData.amount = formData.amount.replace('.', '');
+    formData.amount = Number(formData.amount.replace('.', ''));
     
     if (this.transferForm.valid && this.verifyBalance(formData.amount)) {
       formData.type = TransactionType.TRANSFEROUT;
-      this.onNext.emit(new Transaction(formData));
+      this.onNext.emit(new TransactionDto(formData));
     }
   }
 
   public verifyBalance(amount: number): boolean {
-    if (amount >= this.account.balance) {
+    if (amount > this.account.balance) {
       this.dialog.danger('El monto excede el saldo disponible');
       return false;
     }

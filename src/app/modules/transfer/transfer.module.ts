@@ -19,6 +19,10 @@ import es from '@angular/common/locales/es';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { TransferResultComponent } from './features/transfer-result/transfer-result.component';
 
 registerLocaleData(es);
 
@@ -28,6 +32,7 @@ registerLocaleData(es);
     IconsProviderModule,
     CommonModule,
     FormsModule,
+    PipesModule,
     ReactiveFormsModule,
     NzLayoutModule,
     NzMenuModule,
@@ -38,12 +43,16 @@ registerLocaleData(es);
     NzStepsModule,
     NzFormModule,
     NzInputModule,
-    NzButtonModule
+    NzButtonModule,
+    NzSpinModule,
+    NzResultModule
   ],
   declarations: [
     TransferComponent,
     TransferFormComponent,
-    TransferSummaryComponent],
+    TransferSummaryComponent,
+    TransferResultComponent
+  ],
   exports: [TransferComponent],
   providers: [CurrencyPipe, DialogService, NzMessageService]
 })

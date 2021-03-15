@@ -1,0 +1,30 @@
+<div class="transaction">
+  <div class="transaction__balance">
+    <span>Saldo disponible al {{ currentDate || 0}} Hrs</span>
+    <span>{{ (account?.balance || 0 | currency:'CLP':'$ ':'1.0-0').replace(',', '.')}}</span>
+  </div>
+  <div class="transaction__summary">
+    <div class="transaction__summary__field">
+      <span>Tipo de transacción:</span>
+      <span>{{ transaction.type | transactionPipe}}</span>
+    </div>
+    <div class="transaction__summary__field">
+      <span>RUT del destinatario:</span>
+      <span>{{ transaction.customerDni }}</span>
+    </div>
+    <div class="transaction__summary__field">
+      <span>Monto a transferir:</span>
+      <span>{{ (transaction?.amount || 0 | currency:'CLP':'$ ':'1.0-0').replace(',', '.')  }}</span>
+    </div>
+  </div>
+  <div class="transaction__buttons">
+    <button nz-button nzType="primary" (click)="goBack()">
+      <i nz-icon nzType="arrow-left" nzTheme="outline"></i>
+      Atrás
+    </button>
+    <button nz-button nzType="primary" (click)="confirm()">
+      Continuar
+      <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+    </button>
+  </div>
+</div>

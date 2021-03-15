@@ -1,0 +1,30 @@
+<ng-container [ngSwitch]="result">
+  <ng-container *ngSwitchCase="'NON-EXISTENT_ACCOUNT'">
+    <nz-result
+      nzStatus="error"
+      nzTitle="Usuario inexistente"
+      nzSubTitle="No existe ningún usuario con RUT que usted previó, intentelo nuevamente"
+    >
+      <div nz-result-extra>
+        <button nz-button nzType="primary"
+        (click)="tryAgain()">
+          Intentar denuevo
+        </button>
+      </div>
+    </nz-result>
+  </ng-container>
+  <ng-container *ngSwitchCase="'SUCCESS'">
+    <nz-result
+      nzStatus="success"
+      nzTitle="Transferencia realizada"
+      [nzSubTitle]="subtitle"
+    >
+      <div nz-result-extra>
+        <button nz-button nzType="primary"
+        (click)="goBack()">
+          Terminar
+        </button>
+      </div>
+    </nz-result>
+  </ng-container>
+</ng-container>

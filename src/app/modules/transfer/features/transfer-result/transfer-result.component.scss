@@ -1,4 +1,4 @@
-.transaction {
+.form {
   width: 90%;
   max-width: 450px;
   margin: 2vw auto 0 auto;
@@ -21,22 +21,13 @@
     }
   }
 
-  &__summary {
-    font-family: 'Montserrat Medium';
-    font-size: 1.1rem;
-
-    &__field {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      gap: 10px;
-    }
+  form {
+    width: 100%;
   }
 
-  &__buttons {
+  .buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-top: 20px;
+    justify-content: flex-end;
   }
 }

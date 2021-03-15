@@ -11,15 +11,32 @@
   </div>
   <div class="transfer__step">
     <div *ngIf="currentStep === 0" class="transfer__step__data">
-      <app-tranfer-form (onNext)="getTransactionData($event)"
+      <app-tranfer-form 
+        (onNext)="getTransactionData($event)"
+        [transaction]="presetData ? transaction : null"
         [account]="account"
+        [currentDate]="currentDate"
       ></app-tranfer-form>
     </div>
-    <div *ngIf="currentStep === 0" class="transfer__step__confirmation">
-      <app-transfer-summary></app-transfer-summary>
+    <div *ngIf="currentStep === 1" class="transfer__step__confirmation">
+      <nz-spin nzTip="Realizando transferencia..." [nzSpinning]="isLoading">
+        <app-transfer-summary
+          (onBack)="goToFirstStep()"
+          (onConfirm)="makeTransaction()"
+          [transaction]="transaction"
+          [account]="account"
+          [currentDate]="currentDate"
+        ></app-transfer-summary>
+      </nz-spin>
     </div>
-    <div *ngIf="currentStep === 0" class="transfer__step__result">
-
+    <div *ngIf="currentStep === 2" class="transfer__step__result">
+      <app-transfer-result
+        (onBack)="goToFirstStep(true)"
+        (onTryAgain)="goToFirstStep(false)"
+        [result]="result"
+        [transaction]="succesfulTransaction"
+        [intendedTransaction]="transaction"
+      ></app-transfer-result>
     </div>
   </div>
 </div>

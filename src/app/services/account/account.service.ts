@@ -7,7 +7,7 @@ import { Account } from 'src/app/models/account.model';
 @Injectable({
   providedIn: 'root'
 })
-export class HistoryService {
+export class AccountService {
 
   constructor(
     private rest: RestService

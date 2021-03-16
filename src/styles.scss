@@ -1,2 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './fonts.scss';
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #f5f0ff;
+}

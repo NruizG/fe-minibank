@@ -71,7 +71,7 @@ export class TransferFormComponent implements OnInit {
       this.transferForm.controls[i].updateValueAndValidity();
     }
     const formData = this.transferForm.getRawValue();
-    formData.amount = Number(formData.amount.replace('.', ''));
+    formData.amount = +(formData.amount.split('.').join(''));
     
     if (this.transferForm.valid && this.verifyBalance(formData.amount)) {
       formData.type = TransactionType.TRANSFEROUT;

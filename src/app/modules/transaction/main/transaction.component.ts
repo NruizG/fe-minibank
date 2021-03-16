@@ -45,8 +45,8 @@ export class TransactionComponent implements OnInit {
 
   public submitTransaction(): void {
     const transaction = this.transactionForm.getRawValue();
-    transaction.type = this.selectedTransaction
-    transaction.amount = Number(transaction.amount.replace('.', ''));
+    transaction.type = this.selectedTransaction;
+    transaction.amount = +(transaction.amount.split('.').join(''));
     switch (this.selectedTransaction) {
       case TransactionType.DEPOSIT:
         this.makeDeposit(transaction);
